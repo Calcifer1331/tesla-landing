@@ -1,39 +1,22 @@
 ---
-
+import Section from "./Section.astro";
 ---
-<section class="landing-section bg-black h-screen w-screen text-center relative overflow-hidden"
-         data-header-color="black"
-
+<Section title="Model Y"
+         subtitle="Consertar una prueba de conducion"
+         color="black"
 >
-    <div class="z-30 relative h-full flex flex-col">
-        <header>
-            <h2 class="text-black pt-40 text-[40px] font-medium">
-                Model Y
-            </h2>
-            <p class="text-black text-sm underline">
-                consertar una prueva d econducion
-            </p>
-        </header>
-
-        <footer class=" flex flex-col flex-grow flex-nowrap justify-end pb-20">
-            <div class="flex mx-auto gap-x-4">
-                <a class="bg-gray-700 text-sm rounded font-medium px-12 py-2 transition-colors hover:bg-white
+    <div slot="footer" class="flex mx-auto gap-x-4">
+        <a class="bg-gray-700 text-sm rounded font-medium px-12 py-2 transition-colors hover:bg-white
                 hover:text-black inline-flex justify-center items-center text-white border-gray-700 border-[3px]
                 hover:border-white" href="#">
-                    Explorar Inventario
-                </a>
-                <a class="bg-white text-sm rounded font-medium px-12 py-2 transition-colors hover:bg-black
+            Explorar Inventario
+        </a>
+        <a class="bg-white text-sm rounded font-medium px-12 py-2 transition-colors hover:bg-black
                 hover:text-white inline-flex justify-center items-center text-black border-white border-[3px]
                 hover:border-black" href="#">
-                    Pedido Personalizado
-                </a>
-            </div>
-        </footer>
+            Pedido Personalizado
+        </a>
     </div>
-
-    <div class="absolute top-0 bottom-0 h-full w-full z-10">
-        <picture class="object-center object-cover h-full w-full">
-            <img class="h-full w-full object-cover object-center" src="/model-y.avif" alt="Model Y">
-        </picture>
-    </div>
-</section>
+    <img slot="background"
+         class="h-full w-full object-cover object-center" src="/model-y.avif" alt="Model Y">
+</Section>
