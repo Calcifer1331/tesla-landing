@@ -1,28 +1,79 @@
 ---
-const {color, title, subtitle, id} = Astro.props
-const textColor = `text-${color}`
+import type { HTMLAttributes } from "astro/types";
+import { Picture } from "astro:assets";
+import Button from "../Button.astro";
+
+export interface Props extends HTMLAttributes<"section"> {
+    color: string;
+    title: string;
+    subtitle: string;
+    Img?: ImageMetadata;
+    video?: string;
+}
+const { color, title, subtitle, Img, video, ...attrs } = Astro.props as Props;
+
+const textColor = `text-${color}`;
+const bgClass = "h-full w-full object-cover object-center";
 ---
-<section id={id} class=" landing-section bg-black h-screen w-screen text-center relative overflow-hidden"
-         data-header-color={color}
+
+<section
+    {...attrs}
+    class="landing-section bg-black h-screen w-screen text-center relative overflow-hidden snap-center"
+    data-header-color={color}
 >
-    <div class="z-30 relative h-full flex flex-col">
-        <header>
-            <h2 class={`${textColor} pt-40 text-[40px] font-medium`}>
+    <main class="z-30 relative h-full flex flex-col">
+        <header class="w-5/6 mx-auto md:w-3/5 lg:w-2/5">
+            <h2
+                class={`${textColor} pt-40 text-[40px] font-medium text-balance`}
+            >
                 {title}
             </h2>
-            <p class={`${textColor} text-sm`}>
+            <p class={`${textColor} text-md text-balance`}>
                 {subtitle}
             </p>
         </header>
-
-        <footer class=" flex flex-col flex-grow flex-nowrap justify-end pb-20">
-
-            <slot name="footer"/>
-
+        <footer class="flex flex-col flex-grow flex-nowrap justify-end pb-20">
+            <div class="flex flex-col sm:flex-row mx-auto gap-4">
+                {
+                    Astro.slots.has("footer") ? (
+                        <slot name="footer" />
+                    ) : (
+                        <>
+                            <Button as="a" href="#" btn={2}>
+                                Explorar Inventario
+                            </Button>
+                            <Button as="a" href="#" btn={3}>
+                                Pedido Personalizado
+                            </Button>
+                        </>
+                    )
+                }
+            </div>
         </footer>
-    </div>
+    </main>
 
     <div class="absolute top-0 bottom-0 h-full w-full z-10">
-        <slot name="background"></slot>
+        {
+            Img ? (
+                <Picture
+                    src={Img}
+                    class={bgClass}
+                    alt={title}
+                    widths={[400, 800, 1080, 1200, 1920]}
+                    formats={["webp", "avif"]}
+                />
+            ) : video ? (
+                <video
+                    class={bgClass}
+                    autoplay
+                    muted
+                    loop
+                    src={video}
+                    slot="background"
+                />
+            ) : (
+                <slot name="background" />
+            )
+        }
     </div>
 </section>

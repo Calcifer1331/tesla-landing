@@ -1,39 +1,88 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 import LandingHeader from "../components/LandingHeader.astro";
-import HeroSection from "../components/sections/HeroSection.astro";
-import SectionY from "../components/sections/SectionY.astro";
-import Section3 from "../components/sections/Section3.astro";
-import SectionS from "../components/sections/SectionS.astro";
-import SectionX from "../components/sections/SectionX.astro";
-import SectionPower from "../components/sections/SectionPower.astro";
-import SectionCarga from '../components/sections/SectionCarga.astro';
+import Button from "@comp/Button.astro";
+import Section from "@comp/sections/Section.astro";
+import video from "@video/video2.webm";
+import Model3 from "@img/model-3.webp";
+import Carga from "@img/accessories.webp";
+import Cybertrunk from "@img/Cybertruck.avif";
+import ModelY from "@img/model-y.webp";
+import ModelX from "@img/model-x.webp";
+import ModelS from "@img/model-s.webp";
+import Powerwall from "@img/SolarPanels.avif";
 ---
 
 <Layout title="Tesla - El coche de tus sueños (y de Elon)">
-    <LandingHeader/>
-    <main class="snap-y snap-mandatory relative w-full h-screen overflow-auto overflow-x-hidden scroll-smooth">
-        <div class="snap-center">
-            <HeroSection/>
-        </div>
-        <div class="snap-center">
-            <SectionY/>
-        </div>
-        <div class="snap-center">
-            <Section3/>
-        </div>
-        <div class="snap-center">
-            <SectionS/>
-        </div>
-        <div class="snap-center">
-            <SectionX/>
-        </div>
-        <div class="snap-center">
-            <SectionPower/>
-        </div>
-        <div class="snap-center">
-            <SectionCarga/>
-        </div>
-
-    </main>
+    <LandingHeader />
+    <div
+        class="snap-y snap-mandatory relative w-full h-screen overflow-auto overflow-x-hidden scroll-smooth"
+    >
+        <Section
+            title="Disfrute de tesla"
+            subtitle="Programe una preuva de conduccion ahora mismo!"
+            color="white"
+            id="hero"
+            {video}
+        >
+            <Button slot="footer" as="a" href="#" btn={1}>
+                Prueba de Conduccion
+            </Button>
+        </Section>
+        <Section
+            title="Model S"
+            subtitle="Consertar una prueba de conducion"
+            color="black"
+            id="models"
+            Img={ModelS}
+        />
+        <Section
+            Img={Cybertrunk}
+            title="Cybertruck"
+            subtitle="Sumérjase en una cabina espaciosa y moderna repleta de funciones tecnológicas avanzadas y entretenimiento."
+            color="white"
+            id="cybertruck"
+        />
+        <Section
+            Img={Model3}
+            title="Model 3"
+            subtitle="Consertar una prueba de conducion"
+            color="black"
+            id="model3"
+        />
+        <Section
+            title="Model X"
+            subtitle="Consertar una prueba de conducion"
+            color="black"
+            id="modelx"
+            Img={ModelX}
+        />
+        <Section
+            title="Model Y"
+            subtitle="Consertar una prueba de conducion"
+            color="black"
+            id="modely"
+            Img={ModelY}
+        />
+        <Section
+            title="Solar y PowerWall"
+            subtitle="Energia para todos"
+            color="white"
+            id="powerwall"
+            Img={Powerwall}
+        >
+            <Button as="a" href="#" slot="footer"> Saber Mas </Button>
+        </Section>
+        <Section
+            title="Acesorios"
+            subtitle="Energia para todos"
+            color="black"
+            id="acesorios"
+            Img={Carga}
+        >
+            <Button as="a" href="#" btn={4} slot="footer">
+                Comprar ahora
+            </Button>
+        </Section>
+    </div>
 </Layout>

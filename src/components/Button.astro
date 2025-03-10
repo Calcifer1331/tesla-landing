@@ -1,0 +1,26 @@
+---
+import type { Polymorphic, HTMLTag } from "astro/types";
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+    btn?: 1 | 2 | 3 | 4 | undefined;
+};
+const { as: Tag = "button", btn, ...attrs } = Astro.props as Props<"button">;
+---
+
+<Tag
+    {...attrs}
+    class:list={{
+        // Clases para type === 1 o undefined
+        "text-white text-sm bg-white/5 backdrop-blur-sm border-[3px] border-white rounded font-medium px-12 py-2 inline-block hover:bg-white hover:text-black transition-colors":
+            btn === undefined || btn === 1,
+        // Clases para type === 2
+        "bg-gray-700 text-sm rounded font-medium px-12 py-2 transition-colors hover:bg-white hover:text-black inline-flex justify-center items-center text-white border-gray-700 border-[3px] hover:border-white":
+            btn === 2,
+        // Clases para type === 3
+        "bg-white text-sm rounded font-medium px-12 py-2 transition-colors hover:bg-black hover:text-white inline-flex justify-center items-center text-black border-white border-[3px] hover:border-black":
+            btn === 3,
+        "text-white text-sm bg-black border-[3px] border-black rounded font-medium px-12 py-2 inline-block":
+            btn === 4,
+    }}
+>
+    <slot />
+</Tag>

@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@theme{
+    --default-font-family: 'Gotham SSm A', 'sans-serif';
+    --breakpoint-disp1: 1150px;
+    --breakpoint-disp2: 910px;
+}
